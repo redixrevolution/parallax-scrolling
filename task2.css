@@ -1,0 +1,252 @@
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #030014;
+  color: #fff;
+  overflow-x: hidden;
+  perspective: 1000px;
+}
+
+/* Universe container */
+.universe {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Title styling */
+.universe h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  font-size: 4.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  text-shadow: 0 0 15px #64b5f6, 0 0 25px #2196f3;
+  font-weight: 100;
+  color: #e1f5fe;
+  text-align: center;
+  opacity: 0;
+  animation: fadeInTitle 2s ease-in-out forwards;
+}
+
+@keyframes fadeInTitle {
+  0% { opacity: 0; transform: translate(-50%, -60%); }
+  100% { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+.universe h2 {
+  position: absolute;
+  top: 62%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  font-size: 1.2rem;
+  letter-spacing: 0.2em;
+  text-shadow: 0 0 8px #4fc3f7;
+  font-weight: 200;
+  color: #b3e5fc;
+  opacity: 0;
+  animation: fadeInSubtitle 2s ease-in-out 1s forwards;
+}
+
+@keyframes fadeInSubtitle {
+  0% { opacity: 0; }
+  100% { opacity: 0.8; }
+}
+
+/* Common layer styling */
+.layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Layer 1: Deep space and distant galaxies */
+.layer-1 {
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(25, 25, 110, 0.3), rgba(3, 0, 20, 0.7)),
+    url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=2022&auto=format&fit=crop') 50% 50% / cover no-repeat;
+  z-index: 1;
+  opacity: 0.8;
+  filter: saturate(1.2) brightness(0.8);
+}
+
+/* Layer 2: Nebula clouds and cosmic dust */
+.layer-2 {
+  background: 
+    radial-gradient(circle at 30% 60%, rgba(110, 25, 110, 0.2), rgba(3, 0, 20, 0.6)),
+    url('https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?q=80&w=2070&auto=format&fit=crop') 50% 50% / cover no-repeat;
+  z-index: 2;
+  opacity: 0.7;
+  transform: scale(1.05);
+  filter: hue-rotate(20deg);
+}
+
+/* Layer 3: Foreground stars and celestial objects */
+.layer-3 {
+  background: 
+    linear-gradient(rgba(0,0,20,0), rgba(0,0,20,0.8)),
+    url('https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?q=80&w=2013&auto=format&fit=crop') 50% 50% / cover no-repeat;
+  z-index: 3;
+  transform: scale(1.1);
+}
+
+/* Create twinkling stars */
+.stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: white;
+  border-radius: 50%;
+  opacity: 0;
+  animation: twinkle var(--duration, 4s) infinite var(--delay, 0s);
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: var(--brightness, 1); transform: scale(1); }
+}
+
+/* Content styling */
+.content {
+  position: relative;
+  padding: 5rem 3rem;
+  background: linear-gradient(to bottom, #030014, #0a0a2a, #16213e);
+  min-height: 200vh;
+}
+
+.text {
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.8;
+  font-size: 1.2rem;
+  padding-top: 2rem;
+}
+
+.text p {
+  margin-bottom: 2rem;
+  color: #e1f5fe;
+  text-shadow: 0 0 20px rgba(33, 150, 243, 0.3);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1s ease-out;
+}
+
+.text p.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-title {
+  font-size: 2.5rem;
+  margin: 4rem 0 2rem;
+  color: #4fc3f7;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(33, 150, 243, 0.5);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1s ease-out;
+}
+
+.section-title.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Create orbital path */
+.orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 300px;
+  border: 1px solid rgba(79, 195, 247, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+}
+
+.planet {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle at 30% 30%, #64b5f6, #0d47a1);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  margin-top: -20px;
+  margin-left: -20px;
+  box-shadow: 0 0 20px rgba(33, 150, 243, 0.7);
+  animation: orbit 20s linear infinite;
+}
+
+@keyframes orbit {
+  0% { transform: rotate(0deg) translateX(150px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .universe h1 {
+    font-size: 2.5rem;
+    letter-spacing: 0.2em;
+  }
+  
+  .universe h2 {
+    font-size: 1rem;
+    top: 60%;
+  }
+  
+  .section-title {
+    font-size: a.8rem;
+  }
+  
+  .text {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+  
+  .orbit {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .planet {
+    width: 30px;
+    height: 30px;
+    margin-top: -15px;
+    margin-left: -15px;
+  }
+  
+  @keyframes orbit {
+    0% { transform: rotate(0deg) translateX(100px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
+  }
+}
